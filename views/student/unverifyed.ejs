@@ -1,0 +1,55 @@
+
+
+<div class="container mt-5 student-table">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <a href="/student" class="btn btn-primary">back</a>
+            <div class="card shadow mt-4">
+                <div class="card-body">
+                    <h2 class="text-center">All Unverifyed Students</h2>
+                    <table class="table table-striped align-middle mt-4 soro-data-table">
+                        <thead>
+                            <tr class="align-middle">
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Cell</th>
+                                <th>Location</th>
+                                <th>Photo</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <% students.reverse().forEach((student, index) => { %>
+                                
+                                <tr>
+                                    <td><%= index + 1 %> </td>
+                                    <td><%= student.name %></td>
+                                    <td><%= student.email %></td>
+                                    <td><%= student.cell %></td>
+                                    <td><%= student.location %></td>
+                                    <td>
+                                        <% if (student.photo == 'avatar.png' ) { %>
+                                            <img class="w-5" src="/images/<%= student.photo %>" alt="">
+                                        <% } else { %>
+                                            <img class="w-5" src="/images/students/<%= student.photo %>" alt="">
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success btn-sm" href="/student/<%= student.id %> "><i class="fas fa-eye"></i></a>
+                                        <a class="btn btn-warning btn-sm" href="/student/edit/<%= student.id %>"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger btn-sm detete-btn" href="/student/delete/<%= student.id %>"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+
+                            <% }) %>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.student-table img {
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.preload-student {
+    max-width: 100%;
+}
+
+.student-form label img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.student-form input[type="file"] {
+    display: none;
+}
+
+.student-single .card-body {
+    text-align: center;
+}
+
+.student-single img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 50px auto;
+}
+
+.preload-student {
+    width: 100%;
+}
+
+
+
+/* copy for card */
+body {
+    background: #e8cbc0;
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+    min-height: 100vh;
+}
+
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.social-link:hover, .social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+}
+
+.potu img {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 15px;
+    border-radius: 100%;
+    background-position: top center;
+    border: 3px solid rgba(17, 17, 17, 0.189);
+    box-sizing: border-box;
+}

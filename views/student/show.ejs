@@ -1,0 +1,23 @@
+
+
+<div class="container mt-5 student-single">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <a href="/student" class="btn btn-primary">Step Back</a>
+            <div class="card shadow mt-3">
+                <div class="card-body">
+                    <% if (student.photo == 'avatar.png') { %>
+                        <img src="/images/avatar.png" alt="">
+                    <% } else { %>
+                        <img src="/images/students/<%= student.photo %> " alt="">
+                    <% } %>
+                    <h1><%= student.name %> </h1>
+                    <br>
+                    <p>E-mail : <%= student.email %> </p>
+                    <p>Phone : <%= student.cell %> </p>
+                    <p class="pb-4">Location : <%= student.location %> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
