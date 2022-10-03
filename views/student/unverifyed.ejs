@@ -14,7 +14,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Cell</th>
-                                <th>Location</th>
+                                <th>Verify</th>
                                 <th>Photo</th>
                                 <th>Action</th>
                             </tr>
@@ -28,7 +28,7 @@
                                     <td><%= student.name %></td>
                                     <td><%= student.email %></td>
                                     <td><%= student.cell %></td>
-                                    <td><%= student.location %></td>
+                                    <td><a class="btn btn-sm btn-warning" href="/student/phoneverify/<%= student.id %>">verify by phone</a></td>
                                     <td>
                                         <% if (student.photo == 'avatar.png' ) { %>
                                             <img class="w-5" src="/images/<%= student.photo %>" alt="">

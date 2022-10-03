@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllStudent, createStudent, getSingelStudent, editStudent, studentDataStore, deleteStudent, updateStudent, getAllUnverifiedStudent, verifyAccount } = require('../controllers/studentsControllers');
+const { getAllStudent, createStudent, getSingelStudent, editStudent, studentDataStore, deleteStudent, updateStudent, getAllUnverifiedStudent, verifyAccount, verifyStudentByPhone } = require('../controllers/studentsControllers');
 const multer = require('multer');
 const path = require('path');
 
@@ -31,6 +31,7 @@ router.get('/unverified', getAllUnverifiedStudent);
 router.get('/verify/:token', verifyAccount);
 router.get('/edit/:id', editStudent);
 router.post('/update/:id', updateStudent);
+router.get('/phoneverify/:id', verifyStudentByPhone);
 
 router.get('/delete/:id', deleteStudent);
 router.get('/:id', getSingelStudent)

@@ -79,4 +79,13 @@ body {
     background-position: top center;
     border: 3px solid rgba(17, 17, 17, 0.189);
     box-sizing: border-box;
+    object-fit: cover;
+}
+
+.head-line {
+    color: #fff;
+}
+
+.for-green {
+    color: green;
 }

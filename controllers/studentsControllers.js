@@ -1,6 +1,7 @@
 const path = require('path');
 const {readFileSync, writeFileSync, write} = require('fs');
 const { verifyMail } = require('../utility/sendMail');
+const  smsSend = require('../utility/sendSMS') 
 const { json } = require('express');
 
 
@@ -168,6 +169,29 @@ const verifyAccount = (req, res) => {
 }
 
 
+// verify by phone controllers
+const verifyStudentByPhone = (req, res) => {
+
+    // all students
+    const students = JSON.parse(readFileSync(path.join(__dirname, '../db/student.json')));
+
+    // id from params
+    const {id} = req.params;
+
+    const unverifyed = students.filter(data => data.id == id);
+
+    const { sid, name, email, cell, department, photo, isvalid, token,otp } =
+		students.find((data) => data.id == id);
+    
+    // sendSMS twilio
+    smsSend(cell, `Hi . your OTP code is`);
+
+    res.render('student/phoneverify', {
+        students : unverifyed
+    })
+}
+
+
 // module exports 
 module.exports = {
     getAllStudent,
@@ -178,7 +202,8 @@ module.exports = {
     deleteStudent,
     updateStudent,
     getAllUnverifiedStudent,
-    verifyAccount
+    verifyAccount,
+    verifyStudentByPhone
 }
 
 
