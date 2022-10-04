@@ -22,14 +22,16 @@
                     <h4 class="mb-2"><%= student.name %></h4>
                 </div>
 
-                <form action="">
+                <form action="/student/phoneverifyed/<%= student.id %>" method="POST">
                     <p>A 6 digit OTP code has been sent to your this <%= student.cell %> phone number</p>
                     <label class="for-green" for="">Enter the given OTP for verify </label>
+                    <label class="" for="">(If you didn't receve any message it means the balance of bulksmsbd has been over. So, check it manually from json db) </label>
                     <div class="d-flex justify-content-between"> 
-                        <input type="number" class="form-control w-75 me-3" >
-                        <a class="btn btn-sm btn-success" href="">Verify Now</a>
+                        <input type="number" class="form-control w-75 me-3" name="user_otp" >
+                        <button class="btn btn-sm btn-success" type="submit" href="">Verify Now</button>
                     </div>
                 </form>
+
                 </div>
 
             <% }) %>

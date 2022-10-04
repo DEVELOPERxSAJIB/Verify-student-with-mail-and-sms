@@ -170,7 +170,7 @@ const verifyAccount = (req, res) => {
 
 
 // verify by phone controllers
-const verifyStudentByPhone = (req, res) => {
+const verifyStudentByPhone = async (req, res) => {
 
     // all students
     const students = JSON.parse(readFileSync(path.join(__dirname, '../db/student.json')));
@@ -180,15 +180,65 @@ const verifyStudentByPhone = (req, res) => {
 
     const unverifyed = students.filter(data => data.id == id);
 
-    const { sid, name, email, cell, department, photo, isvalid, token,otp } =
-		students.find((data) => data.id == id);
+    const { name, cell }   = students.filter(data => data.id == id);
     
-    // sendSMS twilio
-    smsSend(cell, `Hi . your OTP code is`);
+    const otp = Math.floor(Math.random() * 900000).toString(); 
+
+    // sendSMS BulksmsBD
+    await smsSend(cell, `Hi ${name}, your OTP code is ${otp}`);
+    
+    // get student verify data
+    students[students.findIndex(data => data.id == id)] = {
+        ...students[students.findIndex(data => data.id == id)],
+        otp
+    }
+
+    // update verifyed data
+    writeFileSync(path.join(__dirname, '../db/student.json'), JSON.stringify(students));
+    
 
     res.render('student/phoneverify', {
         students : unverifyed
     })
+}
+
+// phone verifyed message
+const verifymessage = (req, res) => {
+
+    // all students
+    const students = JSON.parse(readFileSync(path.join(__dirname, '../db/student.json')));
+
+    // id from params
+    const { id } = req.params;
+    const { user_otp } = req.body;
+
+    const { otp } = students.find(data => data.id == id);
+
+    // validation
+    if(otp == user_otp) {
+        
+        // get student verify data
+        students[students.findIndex(data => data.id == id)] = {
+            ...students[students.findIndex(data => data.id == id)],
+            isverifyed : true,
+        }
+
+        res.render('student/pverifyed', {
+            verifyed : true
+        })
+
+    } else {
+        res.render('student/pverifyed', {
+            verifyed : false
+        })
+    }
+
+
+    // update verifyed data
+    writeFileSync(path.join(__dirname, '../db/student.json'), JSON.stringify(students));
+
+    res.redirect('/student');
+
 }
 
 
@@ -203,7 +253,8 @@ module.exports = {
     updateStudent,
     getAllUnverifiedStudent,
     verifyAccount,
-    verifyStudentByPhone
+    verifyStudentByPhone,
+    verifymessage
 }
 
 
